@@ -4,13 +4,44 @@ const API_KEY = import.meta.env.VITE_MY_API_KEY;
 
 export default function Search({foodData, setFoodData}) {
     const [ingredients, setIngredient] = useState(['']);
+    const [suggestions, setSuggestions] = useState([[]]);
+    const [currentIndex, setCurrentIndex] = useState(-1);
 
+    // Everytime the ingredients change, fetch new suggestions
+    useEffect(() => {
+        const fetchSuggestions = async () => {
+            if (currentIndex === -1) return;
+            const query = ingredients[currentIndex].trim();
+            if (!query) return;
+
+            try {
+                const response = await fetch(`https://api.spoonacular.com/food/ingredients/autocomplete?query=${query}&number=5&apiKey=${API_KEY}`);
+                const data = await response.json();
+                console.log(data.map(item => item.name));
+
+                // Creates a copy of suggestions array and updates the current index with new suggestions
+                const copySuggestions = [...suggestions];
+                copySuggestions[currentIndex] = data.map(item => item.name);
+                setSuggestions(copySuggestions);
+            }
+
+            catch (error) {
+                console.error('Error fetching suggestions:', error);
+            }
+
+            console.log(`Fetching suggestions for: ${query}`);
+        }
+
+        fetchSuggestions();
+    }, [ingredients, currentIndex]); 
 
     // Function to update the ingredient state
     const handleChange = (index, newValue) => {
         const copyIngredients = [...ingredients];
         copyIngredients[index] = newValue;
         setIngredient(copyIngredients);
+        setCurrentIndex(index);
+        
     };
 
     // Function to add a new ingredient field
@@ -23,6 +54,7 @@ export default function Search({foodData, setFoodData}) {
         const copyIngredients = [...ingredients];
         copyIngredients.splice(index, 1);
         setIngredient(copyIngredients);
+        setCurrentIndex(-1);
     }
 
     const handleSearch = async () => {
@@ -40,7 +72,7 @@ export default function Search({foodData, setFoodData}) {
   
     }
 
-    console.log(ingredients);
+    // console.log(ingredients);
     return (
         <div>
             {ingredients.map((ing, index) => (
@@ -50,25 +82,31 @@ export default function Search({foodData, setFoodData}) {
                         value={ing}
                         placeholder="Enter an ingredient"
                         onChange={e => {handleChange(index, e.target.value)}}
+                        onFocus = {() => setCurrentIndex(index)}
                     />
 
-                    <button
-                        onClick = {e => {handleDeleteField(index)}}>
-                        Delete
-                    </button>
-
-                    </div>
+                <button onClick = {e => {handleDeleteField(index)}}> Delete </button>
+                
+                {suggestions[index] && suggestions[index].length > 0 && (
+                    <ul>
+                        {suggestions[index].map((suggestion, i) => (
+                            <li key={i} onClick={() => {
+                                handleChange(index, suggestion);
+                                const copySuggestions = [...suggestions];
+                                copySuggestions[index] = [];
+                                setSuggestions(copySuggestions);
+                                setCurrentIndex(-1);
+                                }}>
+                                {suggestion}
+                            </li>
+                        ))}
+                    </ul>
+                )}
+                </div>
             ))}
 
-            <button
-                onClick = {handleAddField}>
-                Add Ingredient
-            </button>
-
-            <button
-                onClick = {handleSearch}>
-                Search 
-            </button>
+            <button onClick = {handleAddField}> Add Ingredient </button>
+            <button onClick = {handleSearch}> Search </button>
         </div>
     );
 }
