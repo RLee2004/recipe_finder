@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import Search from './Components/Search'
+import ListOfRecipes from './Components/ListOfRecipes'
 
 function App() {
-  const [foodData, setFoodData] = useState([])
+  const [foodData, setFoodData] = useState([]);
   return (
     <>
       <div>
        <Search foodData = {foodData} setFoodData = {setFoodData}/>
-       {foodData.map((food) => 
-        <h1 key = {food.id}> {food.title}</h1>)}
+       <ListOfRecipes foodData = {foodData}/>
       </div>
     
     </>

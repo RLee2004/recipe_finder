@@ -1,0 +1,24 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ingredient-input {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.input-and-button {
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+}
+
+.bottom-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 20px;
+}

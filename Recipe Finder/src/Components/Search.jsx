@@ -35,6 +35,21 @@ export default function Search({foodData, setFoodData}) {
         fetchSuggestions();
     }, [ingredients, currentIndex]); 
 
+    useEffect(() => {
+    const handleClickOutside = (e) => {
+        // Only clear if click is outside any <ul> or <input>
+        if (!e.target.closest('ul')) {
+            setSuggestions(suggestions.map(() => [])); 
+            setCurrentIndex(-1);
+        }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+    };
+}, [suggestions]);
+
     // Function to update the ingredient state
     const handleChange = (index, newValue) => {
         const copyIngredients = [...ingredients];
@@ -76,37 +91,41 @@ export default function Search({foodData, setFoodData}) {
     return (
         <div>
             {ingredients.map((ing, index) => (
-                <div key = {index}>
-                    <input
-                        type="text"
-                        value={ing}
-                        placeholder="Enter an ingredient"
-                        onChange={e => {handleChange(index, e.target.value)}}
-                        onFocus = {() => setCurrentIndex(index)}
-                    />
-
-                <button onClick = {e => {handleDeleteField(index)}}> Delete </button>
+                <div key = {index} className = "ingredient-input">
+                    <div className = "input-and-button">
+                        <input
+                            type="text"
+                            value={ing}
+                            placeholder="Enter an ingredient"
+                            onChange={e => {handleChange(index, e.target.value)}}
+                            onFocus = {() => setCurrentIndex(index)}
+                        />
+                        <button onClick = {e => {handleDeleteField(index)}}> Delete </button>
+                    </div>
                 
-                {suggestions[index] && suggestions[index].length > 0 && (
-                    <ul>
-                        {suggestions[index].map((suggestion, i) => (
-                            <li key={i} onClick={() => {
-                                handleChange(index, suggestion);
-                                const copySuggestions = [...suggestions];
-                                copySuggestions[index] = [];
-                                setSuggestions(copySuggestions);
-                                setCurrentIndex(-1);
-                                }}>
-                                {suggestion}
-                            </li>
-                        ))}
-                    </ul>
-                )}
+                    {suggestions[index] && suggestions[index].length > 0 && (
+                        <ul>
+                            {suggestions[index].map((suggestion, i) => (
+                                <li style = {{width: 'fit-content'}} key={i} onClick={() => {
+                                    handleChange(index, suggestion);
+                                    const copySuggestions = [...suggestions];
+                                    copySuggestions[index] = [];
+                                    setSuggestions(copySuggestions);
+                                    setCurrentIndex(-1);
+                                    }}>
+                                    {suggestion}
+                                </li>
+                            ))}
+                        </ul>
+                    )}
                 </div>
             ))}
+        
+            <div className = "bottom-buttons">
+                <button onClick = {handleAddField}> Add Ingredient </button>
+                <button onClick = {handleSearch}> Search </button>
+            </div>
 
-            <button onClick = {handleAddField}> Add Ingredient </button>
-            <button onClick = {handleSearch}> Search </button>
         </div>
     );
 }
