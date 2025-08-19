@@ -1,5 +1,7 @@
 export default function RecipeInformation({ recipe }) {
-    return <div>
-        <h1 key = {recipe.id}> {recipe.title}</h1>
+    return <div className = "recipe-information">
+        <img src={recipe.image} alt={recipe.title} />
+        <h3> {recipe.title}</h3>
+        <button>View Recipe</button>
     </div>
 }

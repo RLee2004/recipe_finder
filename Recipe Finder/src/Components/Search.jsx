@@ -89,7 +89,7 @@ export default function Search({foodData, setFoodData}) {
 
     // console.log(ingredients);
     return (
-        <div>
+        <div className = "search-container">
             {ingredients.map((ing, index) => (
                 <div key = {index} className = "ingredient-input">
                     <div className = "input-and-button">
