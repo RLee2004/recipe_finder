@@ -100,7 +100,7 @@ export default function Search({foodData, setFoodData}) {
                             onChange={e => {handleChange(index, e.target.value)}}
                             onFocus = {() => setCurrentIndex(index)}
                         />
-                        <button onClick = {e => {handleDeleteField(index)}}> Delete </button>
+                        <span className="material-symbols-outlined" onClick = {e => {handleDeleteField(index)}}> delete </span>
                     </div>
                 
                     {suggestions[index] && suggestions[index].length > 0 && (

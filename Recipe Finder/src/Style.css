@@ -69,3 +69,25 @@ body {
     color: #212529;
     margin: 0px;
 }
+
+.input-and-button input {
+    width: 100%;
+    border: 1px solid #F8F9FA;
+    border-radius: 10px;
+    font-size: 1rem;
+    padding: 5px;
+}
+
+.ingredient-input li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.material-symbols-outlined {
+    color: #E23D28;
+    font-size: 2rem;
+    border: 1.5px solid #E23D28;
+    border-radius: 5px;
+    background-color: #F8F9FA;
+}
