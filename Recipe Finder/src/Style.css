@@ -76,6 +76,20 @@ body {
     border-radius: 10px;
     font-size: 1rem;
     padding: 5px;
+    background-color: #F8F9FA;
+    outline: none;
+}
+
+.ingredient-input ul {
+    padding: 0;
+    margin: 0;
+    width: 207px;
+    border-top: 2px solid #CED4DA;
+    border-radius: 0 0 10px 10px;
+    background-color: #F8F9FA;
+    overflow: hidden;
+    position: relative;
+    bottom: 7px;
 }
 
 .ingredient-input li {
@@ -84,10 +98,24 @@ body {
     margin: 0;
 }
 
+.ingredient-input li {
+    padding: 5px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.ingredient-input li:hover {
+    background-color: #E9ECEF;
+}
+
 .material-symbols-outlined {
     color: #E23D28;
     font-size: 2rem;
     border: 1.5px solid #E23D28;
     border-radius: 5px;
     background-color: #F8F9FA;
+}
+
+.material-symbols-outlined:hover {
+    cursor: pointer;
 }

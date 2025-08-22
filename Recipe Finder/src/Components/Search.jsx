@@ -106,7 +106,7 @@ export default function Search({foodData, setFoodData}) {
                     {suggestions[index] && suggestions[index].length > 0 && (
                         <ul>
                             {suggestions[index].map((suggestion, i) => (
-                                <li style = {{width: 'fit-content'}} key={i} onClick={() => {
+                                <li key={i} onClick={() => {
                                     handleChange(index, suggestion);
                                     const copySuggestions = [...suggestions];
                                     copySuggestions[index] = [];
