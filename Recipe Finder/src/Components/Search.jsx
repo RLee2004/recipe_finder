@@ -35,20 +35,21 @@ export default function Search({foodData, setFoodData}) {
         fetchSuggestions();
     }, [ingredients, currentIndex]); 
 
+    // Clear suggestions when clicking outside of input or suggestion list
     useEffect(() => {
-    const handleClickOutside = (e) => {
-        // Only clear if click is outside any <ul> or <input>
-        if (!e.target.closest('ul')) {
-            setSuggestions(suggestions.map(() => [])); 
-            setCurrentIndex(-1);
-        }
-    };
+        const handleClickOutside = (e) => {
+            // Only clear if click is outside any <ul> or <input>
+            if (!e.target.closest('ul')) {
+                setSuggestions(suggestions.map(() => [])); 
+                setCurrentIndex(-1);
+            }
+        };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
-    };
-}, [suggestions]);
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [suggestions]);
 
     // Function to update the ingredient state
     const handleChange = (index, newValue) => {
@@ -72,6 +73,7 @@ export default function Search({foodData, setFoodData}) {
         setCurrentIndex(-1);
     }
 
+    // Function to fetch recipes based on ingredients
     const handleSearch = async () => {
         const query = ingredients.map(ing => ing.trim()).filter(ing => ing).join()
 
@@ -87,7 +89,6 @@ export default function Search({foodData, setFoodData}) {
   
     }
 
-    // console.log(ingredients);
     return (
         <div className = "search-container">
             {ingredients.map((ing, index) => (
@@ -100,7 +101,7 @@ export default function Search({foodData, setFoodData}) {
                             onChange={e => {handleChange(index, e.target.value)}}
                             onFocus = {() => setCurrentIndex(index)}
                         />
-                        <span className="material-symbols-outlined" onClick = {e => {handleDeleteField(index)}}> delete </span>
+                        <span className="material-symbols-outlined delete" onClick = {e => {handleDeleteField(index)}}> delete </span>
                     </div>
                 
                     {suggestions[index] && suggestions[index].length > 0 && (
@@ -122,8 +123,15 @@ export default function Search({foodData, setFoodData}) {
             ))}
         
             <div className = "bottom-buttons">
-                <button onClick = {handleAddField}> Add Ingredient </button>
-                <button onClick = {handleSearch}> Search </button>
+                <button className = "add-button" onClick = {handleAddField}> 
+                    <span className="material-symbols-outlined"> add_2 </span> 
+                    Add Ingredient 
+                    </button>
+                
+                <button className = "search-button" onClick = {handleSearch}>
+                    <span className="material-symbols-outlined search" onClick = {handleSearch}> search</span>
+                    Search For Recipes </button>
+                
             </div>
 
         </div>
