@@ -3,8 +3,8 @@ html {
 }
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #ADB5BD;
-    margin: 0 250px;
+    background-color: #adb5bd;
+    margin: 0 100px;
 }
 
 .ingredient-input {
@@ -55,9 +55,32 @@ body {
     text-align: center;
 }
 
+.recipe-information img {
+    width: 100%;
+    height: 100%;
+}
+
+.recipe-information button {
+    color: #198754;
+    font-size: 1rem;
+    font-weight: 600;
+    border: 1.5px solid #198754;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px;
+}
+
+.recipe-information button:hover {
+    cursor: pointer;
+    background-color: #dee2e6;
+}
+
 .header {
     width: 100%;
-    background-color: #F8F9FA;
+    background-color: #f8f9fa;
     padding: 10px 0;
     text-align: center;
     border-bottom: 1px solid #ddd;
@@ -73,11 +96,11 @@ body {
 
 .input-and-button input {
     width: 100%;
-    border: 1px solid #F8F9FA;
+    border: 1px solid #f8f9fa;
     border-radius: 10px;
     font-size: 1rem;
     padding: 5px;
-    background-color: #F8F9FA;
+    background-color: #f8f9fa;
     outline: none;
 }
 
@@ -85,9 +108,9 @@ body {
     padding: 0;
     margin: 0;
     width: 207px;
-    border-top: 2px solid #CED4DA;
+    border-top: 2px solid #ced4da;
     border-radius: 0 0 10px 10px;
-    background-color: #F8F9FA;
+    background-color: #f8f9fa;
     overflow: hidden;
     position: relative;
     bottom: 7px;
@@ -106,23 +129,24 @@ body {
 }
 
 .ingredient-input li:hover {
-    background-color: #DEE2E6;
+    background-color: #dee2e6;
 }
 
 .delete {
-    color: #E23D28;
+    color: #e23d28;
     font-size: 2rem;
-    border: 1.5px solid #E23D28;
+    border: 1.5px solid #e23d28;
     border-radius: 5px;
-    background-color: #F8F9FA;
+    background-color: #f8f9fa;
 }
 
 .search-button {
     color: #198754;
     font-size: 1rem;
+    font-weight: 600;
     border: 1.5px solid #198754;
     border-radius: 5px;
-    background-color: #F8F9FA;
+    background-color: #f8f9fa;
     display: flex;
     align-items: center;
     gap: 5px;
@@ -131,15 +155,16 @@ body {
 
 .search-button:hover {
     cursor: pointer;
-    background-color: #DEE2E6;
+    background-color: #dee2e6;
 }
 
 .add-button {
-    color: #43A6C6;
+    color: #43a6c6;
     font-size: 1rem;
-    border: 1.5px solid #43A6C6;
+    font-weight: 600;
+    border: 1.5px solid #43a6c6;
     border-radius: 5px;
-    background-color: #F8F9FA;
+    background-color: #f8f9fa;
     display: flex;
     align-items: center;
     gap: 5px;
@@ -148,12 +173,12 @@ body {
 
 .add-button:hover {
     cursor: pointer;
-    background-color: #DEE2E6;
+    background-color: #dee2e6;
 }
 
 .material-symbols-outlined:hover {
     cursor: pointer;
-    background-color: #DEE2E6;
+    background-color: #dee2e6;
 }
 
 .recipe-card {
@@ -166,6 +191,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0 100px;
 }
 
 .recipe-content {
@@ -174,4 +200,41 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     text-align: center;
+    width: 500px;
+}
+
+.recipe-content img {
+    max-width: 300px;
+}
+
+.recipe-info {
+    display: flex;
+    justify-content: space-around;
+}
+
+.ingredients-list {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.ingredients-column {
+    flex: 1;
+}
+
+.ingredients-column h3 {
+    margin: 0 1rem;
+    text-align: center;
+}
+.ingredients-column ul {
+    list-style-type: none;
+    text-align: match-parent;
+    padding: 0px;
+    margin-top: 10px;
+}
+
+.recipe-instructions li {
+    text-align: left;
+    padding: 10px;
+
 }

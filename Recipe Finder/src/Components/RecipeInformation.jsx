@@ -1,20 +1,45 @@
-import {useState} from 'react';
-import RecipeCard from './RecipeCard';
+import { useState } from "react";
+import RecipeCard from "./RecipeCard";
 
 export default function RecipeInformation({ recipe }) {
-    const [showDetails, setShowDetails] = useState(false);
-    
-    return (<div className = "recipe-information">
-        <img src={recipe.image} alt={recipe.title} />
-        <h3> {recipe.title}</h3>
-        <button onClick = {() => {setShowDetails(true)}}>View Recipe</button>
-        <RecipeCard showDetails = {showDetails} onClose = {() => setShowDetails(false)} id = {recipe.id}>
-            <img src = {recipe.image}></img>
-            <h1>{recipe.title}</h1>
-            Missing Ingredients: {recipe.missedIngredients.map(ing => ing.name).join(', ')} <br/>
-            Used Ingredients: {recipe.usedIngredients.map(ing => ing.name).join(', ')} <br/>
+	const [showDetails, setShowDetails] = useState(false);
 
-        </RecipeCard>
-    </div>
-    )
+	return (
+		<div className="recipe-information">
+			<img src={recipe.image} alt={recipe.title} />
+			<h3> {recipe.title}</h3>
+			<button
+				onClick={() => {
+					setShowDetails(true);
+				}}
+			>
+				View Recipe
+			</button>
+			<RecipeCard
+				showDetails={showDetails}
+				onClose={() => setShowDetails(false)}
+				id={recipe.id}
+			>
+				<div className="ingredients-list">
+					<div className="ingredients-column">
+						<h3>Missing Ingredients</h3>
+						<ul>
+							{recipe.missedIngredients.map((ingredient) => (
+								<li key={ingredient.id}>{ingredient.name}</li>
+							))}
+						</ul>
+					</div>
+
+					<div className="ingredients-column">
+						<h3>Used Ingredients</h3>
+						<ul>
+							{recipe.usedIngredients.map((ingredient) => (
+								<li key={ingredient.id}>{ingredient.name}</li>
+							))}
+						</ul>
+					</div>
+				</div>
+			</RecipeCard>
+		</div>
+	);
 }
