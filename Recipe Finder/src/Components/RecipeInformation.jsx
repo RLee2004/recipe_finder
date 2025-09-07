@@ -21,20 +21,20 @@ export default function RecipeInformation({ recipe }) {
 				id={recipe.id}
 			>
 				<div className="ingredients-list">
-					<div className="ingredients-column">
+					<div className="ingredients-column missing">
 						<h3>Missing Ingredients</h3>
 						<ul>
 							{recipe.missedIngredients.map((ingredient) => (
-								<li key={ingredient.id}>{ingredient.name}</li>
+								<li key={ingredient.id}>{ingredient.original}</li>
 							))}
 						</ul>
 					</div>
 
-					<div className="ingredients-column">
+					<div className="ingredients-column used">
 						<h3>Used Ingredients</h3>
 						<ul>
 							{recipe.usedIngredients.map((ingredient) => (
-								<li key={ingredient.id}>{ingredient.name}</li>
+								<li key={ingredient.id}>{ingredient.original}</li>
 							))}
 						</ul>
 					</div>
