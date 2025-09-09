@@ -44,7 +44,8 @@ export default function RecipeCard({ children, showDetails, onClose, id }) {
 				{children}
 				<div className="recipe-instructions">
 					<h2>Instructions</h2>
-					{recipeDetails.analyzedInstructions && (
+					{recipeDetails.analyzedInstructions &&
+					recipeDetails.analyzedInstructions.length > 0 ? (
 						<ol>
 							{recipeDetails.analyzedInstructions[0].steps.map(
 								(step) => (
@@ -52,8 +53,21 @@ export default function RecipeCard({ children, showDetails, onClose, id }) {
 								)
 							)}
 						</ol>
+					) : (
+						<p>No instructions available.</p>
 					)}
 				</div>
+				<button className = "view-full-recipe-button"
+					onClick={() =>
+						window.open(
+							recipeDetails.sourceUrl,
+							"_blank",
+							"noopener,noreferrer"
+						)
+					}
+				>
+					View Full Recipe
+				</button>
 			</div>
 		</div>
 	);

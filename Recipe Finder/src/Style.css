@@ -48,6 +48,10 @@ body {
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-evenly;
+	padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 	margin: 0 100px;
 }
 
@@ -196,7 +200,7 @@ body {
 }
 
 .recipe-content {
-	background-color: white;
+	background-color: #f8f9fa;
 	padding: 20px;
 	border-radius: 10px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -207,8 +211,11 @@ body {
 	overflow-y: scroll;
 }
 
+
+
 .recipe-content img {
 	max-width: 300px;
+	border-radius: 10px;
 }
 
 .recipe-info {
@@ -258,3 +265,12 @@ body {
 	text-align: left;
 	padding: 10px;
 }
+
+.view-full-recipe-button {
+	display: block;
+	margin: auto;
+
+}
+
+
+
